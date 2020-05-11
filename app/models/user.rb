@@ -3,4 +3,9 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  # As a user, I can "admin" the giftees that will not register into the app
+  has_many :giftees
+  # As a user, I can only "admin" one gifter (myself)
+  has_one :gifter
 end

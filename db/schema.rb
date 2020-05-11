@@ -10,10 +10,54 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_11_104920) do
+ActiveRecord::Schema.define(version: 2020_05_11_145228) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "giftees", force: :cascade do |t|
+    t.string "name"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "gifter_id"
+    t.bigint "present_id"
+    t.bigint "occasion_id"
+    t.index ["gifter_id"], name: "index_giftees_on_gifter_id"
+    t.index ["occasion_id"], name: "index_giftees_on_occasion_id"
+    t.index ["present_id"], name: "index_giftees_on_present_id"
+    t.index ["user_id"], name: "index_giftees_on_user_id"
+  end
+
+  create_table "gifters", force: :cascade do |t|
+    t.string "name"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "present_id"
+    t.bigint "occasion_id"
+    t.index ["occasion_id"], name: "index_gifters_on_occasion_id"
+    t.index ["present_id"], name: "index_gifters_on_present_id"
+    t.index ["user_id"], name: "index_gifters_on_user_id"
+  end
+
+  create_table "occasions", force: :cascade do |t|
+    t.string "name"
+    t.datetime "date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "presents", force: :cascade do |t|
+    t.string "name"
+    t.string "link"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "gifter_id"
+    t.bigint "giftee_id"
+    t.index ["giftee_id"], name: "index_presents_on_giftee_id"
+    t.index ["gifter_id"], name: "index_presents_on_gifter_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -28,4 +72,7 @@ ActiveRecord::Schema.define(version: 2020_05_11_104920) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "giftees", "gifters"
+  add_foreign_key "giftees", "users"
+  add_foreign_key "gifters", "users"
 end
