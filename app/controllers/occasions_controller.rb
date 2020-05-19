@@ -1,7 +1,16 @@
 class OccasionsController < ApplicationController
- def new
-   @occasion = Occasion.new
- end
+
+  def index
+    @occasions = Occasion.all
+  end
+
+  def show
+    @occasion = Occasion.find(params[:id])
+  end
+
+  def new
+    @occasion = Occasion.new
+  end
 
   def create
     @occasion = Occasion.new(occasion_params)
@@ -14,10 +23,6 @@ class OccasionsController < ApplicationController
       render :new
     end
   end
-
- def show
-   @occasion = Occasion.find(params[:id])
- end
 
   private
 

@@ -1,0 +1,5 @@
+<% @occasions.each do |occasion| %>
+  <div>
+    <%= link_to occasion.name, occasion_path(occasion) %>
+  </div>
+<% end %>

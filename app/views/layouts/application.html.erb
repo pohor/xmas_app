@@ -17,7 +17,8 @@
         Hello, <%= current_user.name %> |
         <%= link_to 'Log out', destroy_user_session_path, method: :delete %> |
         <%= link_to 'Your Profile', edit_user_registration_path %> |
-        <%= link_to 'Home', root_path %>
+        <%= link_to 'Home', root_path %> |
+        <%= link_to 'Occasions', occasions_path %>
       <% else %>
         <%= link_to 'Log in', new_user_session_path%> |
         <%= link_to 'Sign up', new_user_registration_path %>
