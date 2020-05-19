@@ -1,7 +1,2 @@
-<%= form_for @occasion do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  <%= f.label :date %>
-  <%= f.date_select :date %>
-  <%= f.submit "Create an Occasion" %>
-<% end %>
+<%= render "form" %>
+<%= link_to "Back", occasions_path %>
