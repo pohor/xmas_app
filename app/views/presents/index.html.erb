@@ -1,0 +1,11 @@
+<div>
+  <% @presents.each do |present| %>
+    <div>
+      <%= present.name %>
+      <%= link_to "Show", present_path(present) %>
+    </div>
+  <% end %>
+</div>
+<div>
+  <%= link_to "Add new Present to your Wihlist", new_present_path %>
+</div>

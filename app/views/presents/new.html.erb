@@ -1,0 +1,8 @@
+<%= form_for @present do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.label :link %>
+  <%= f.text_field :link %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.submit %>
+<% end %>
