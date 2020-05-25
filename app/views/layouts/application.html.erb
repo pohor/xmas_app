@@ -4,7 +4,9 @@
     <title>XmasApp</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -12,21 +14,33 @@
   <body>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    <div>
+    <div class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <%= image_tag("logo.png", alt: "logo", class: "image is-64x64") %>
+        <br>Christmas App
+      </div>
       <% if user_signed_in? %>
-        Hello, <%= current_user.name %> |
-        <%= link_to 'Log out', destroy_user_session_path, method: :delete %> |
-        <%= link_to 'Your Profile', edit_user_registration_path %> |
-        <%= link_to 'Home', root_path %> |
-        <%= link_to 'Occasions', occasions_path %> |
-        <%= link_to 'Your Wishlist', presents_path %>
+        <div class="navbar-start">
+          <div class ="navbar-item">Hello, <%= current_user.name %></div>
+          <div class ="navbar-item"><%= link_to 'Home', root_path %></div>
+          <div class ="navbar-item"><%= link_to 'Occasions', occasions_path %></div>
+          <div class ="navbar-item"><%= link_to 'Your Wishlist', presents_path %></div>
+        </div>
+        <div class="navbar-end">
+          <div class ="navbar-item"><%= link_to 'Log out', destroy_user_session_path, method: :delete %></div>
+          <div class ="navbar-item"><%= link_to 'Your Profile', edit_user_registration_path %></div>
+        </div>
       <% else %>
-        <%= link_to 'Log in', new_user_session_path%> |
-        <%= link_to 'Sign up', new_user_registration_path %>
+        <div class="navbar-start">
+          <div class ="navbar-item"> <%= link_to 'Log in', new_user_session_path%></div>
+          <div class ="navbar-item"><%= link_to 'Sign up', new_user_registration_path %></div>
+        </div>
       <% end %>
     </div>
-    <div>
+    <section class="section">
+      <div class="content">
       <%= yield %>
-    </div>
+      </div>
+    </section>
   </body>
 </html>
