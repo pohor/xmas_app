@@ -1,0 +1,7 @@
+<%= form_for [@occasion, @giftee] do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.label "Who will me managing this giftee?" %>
+  <%= f.collection_radio_buttons(:user_id, User.all, :id, :name) %>
+  <%= f.submit %>
+<% end %>

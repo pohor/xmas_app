@@ -1,4 +1,5 @@
 class GiftersController < ApplicationController
+  after_action :create_giftee, only: [:create]
 
   def show
     @gifter = Gifter.find(params[:id])
@@ -28,5 +29,10 @@ class GiftersController < ApplicationController
 
   def gifter_params
     params.require(:gifter).permit(:name, :user_id, :occasion_id, :present_id)
+  end
+
+  def create_giftee
+    occasion = Occasion.find(params[:occasion_id])
+    occasion.giftees.create(name: params[:gifter][:name], user: current_user)
   end
 end

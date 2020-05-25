@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   resources :occasions do
     resources :gifters
+    resources :giftees
   end
 
 
