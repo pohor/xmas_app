@@ -1,4 +1,13 @@
 <%= @occasion.name %>
 <%= @occasion.date %>
+<div>
+  Who will be taking part?
+  <% @occasion.gifters.each do |gifter| %>
+    <p>
+      <%= link_to gifter.name, occasion_gifter_path(@occasion, gifter) %>
+    </p>
+  <% end %>
+</div>
 <%= link_to "Edit",  edit_occasion_path(@occasion) %>
 <%= link_to "All Occasions", occasions_path %>
+<%= link_to "Register as a participant", new_occasion_gifter_path(@occasion, @gifter) %>
