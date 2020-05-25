@@ -9,6 +9,7 @@
         <%= link_to gifter.name, occasion_gifter_path(@occasion, gifter) %>
       </p>
     <% end %>
+    <%= link_to "Register as a participant", new_occasion_gifter_path(@occasion, @gifter) %>
   </div>
   <div>
     GIFTEES:
@@ -22,4 +23,3 @@
 </div>
 <%= link_to "Edit",  edit_occasion_path(@occasion) %>
 <%= link_to "All Occasions", occasions_path %>
-<%= link_to "Register as a participant", new_occasion_gifter_path(@occasion, @gifter) %>

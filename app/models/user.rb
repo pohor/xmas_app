@@ -8,5 +8,4 @@ class User < ApplicationRecord
   has_many :giftees
   # As a user, I can only "admin" one gifter (myself)
   has_one :gifter
-  has_many :presents
 end

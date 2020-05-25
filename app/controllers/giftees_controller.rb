@@ -3,6 +3,7 @@ class GifteesController < ApplicationController
   def show
     @giftee = Giftee.find(params[:id])
     @occasion = @giftee.occasion
+    @present = Present.new
   end
 
   def new

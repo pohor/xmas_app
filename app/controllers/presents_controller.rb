@@ -1,21 +1,17 @@
 class PresentsController < ApplicationController
   def index
-    @presents = Present.all.where(user_id: current_user.id)
+    @presents = Present.all.where("giftee_id = ?", Giftee.where(user_is_present: true).where(user_id: current_user.id).pluck(:id) )
   end
 
   def show
     @present = Present.find(params[:id])
   end
 
-  def new
-    @present = Present.new
-  end
-
   def create
     @present = Present.new(present_params)
     if @present.save
-      flash[:notice] = "You've added an present!"
-      redirect_to @present
+      flash[:notice] = "You've added a new present!"
+      redirect_to occasion_giftee_path(@present.giftee.occasion, @present.giftee)
     else
       @errors = @present.errors
       flash[:error] = @errors
@@ -42,6 +38,6 @@ class PresentsController < ApplicationController
   private
 
   def present_params
-    params.require(:present).permit(:name, :date, :user_id, :gifter_id, :giftee_id)
+    params.require(:present).permit(:name, :gifter_id, :giftee_id)
   end
 end

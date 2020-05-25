@@ -1,12 +1,14 @@
 <div>
-  <% @presents.each do |present| %>
-    <div>
-      <%= present.name %>
-      <%= link_to "Show", present_path(present) %>
-      <%= link_to "Edit", edit_present_path(present) %>
-    </div>
+  <% if @presents.empty? %>
+    You don't have any registered presents yet!
+  <% else %>
+    Presents from all the giftees that you have registered:
+    <% @presents.each do |present| %>
+      <div>
+        <%= present.name %>
+        <%= link_to "Show", present_path(present) %>
+        <%= link_to "Edit", edit_present_path(present) %>
+      </div>
+    <% end %>
   <% end %>
-</div>
-<div>
-  <%= link_to "Add new Present to your Wihlist", new_present_path %>
 </div>

@@ -3,6 +3,6 @@
   <%= f.text_field :name %>
   <%= f.label :link %>
   <%= f.text_field :link %>
-  <%= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.hidden_field :giftee_id, value: @giftee.id %>
   <%= f.submit %>
 <% end %>
