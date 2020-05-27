@@ -12,8 +12,12 @@
   </head>
 
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <% if flash[:notice] %>
+      <div class="notification is-success"><button class="delete" id="close-notice-flash"></button><%= notice %></div>
+    <% end %>
+    <% if flash[:alert] %>
+      <div class="notification is-warning"><button class="delete" id="close-alert-flash"></button><%= alert %></div>
+    <% end %>
     <div class="navbar" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
         <%= image_tag("logo.png", alt: "logo", class: "image is-64x64") %>
