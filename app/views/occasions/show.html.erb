@@ -1,25 +1,47 @@
-<%= @occasion.name %>
-<%= format(@occasion.date) %>
-<div>
-  Who will be taking part?
-  <div>
-    GIFTERS:
-    <% @occasion.gifters.each do |gifter| %>
-      <p>
-        <%= link_to gifter.name, occasion_gifter_path(@occasion, gifter) %>
-      </p>
-    <% end %>
-    <%= link_to "Register as a participant", new_occasion_gifter_path(@occasion, @gifter) %>
+<div class="title">
+  <%= @occasion.name %>
+</div>
+<div class="subtitle">
+  <%= format(@occasion.date) %>
+</div>
+  <div class="subtitle">
+    Who will be taking part?
   </div>
-  <div>
-    GIFTEES:
-    <% @occasion.giftees.each do |giftee| %>
-      <p>
-        <%= link_to giftee.name, occasion_giftee_path(@occasion, giftee) %>
-      </p>
-    <% end %>
-    <%= link_to "Add another giftee", new_occasion_giftee_path(@occasion, @giftee) %>
-  </div>
+<div class="box">
+  <section class="section">
+    <div class="title">
+      GIFTERS
+    </div>
+    <div class="tile is-ancestor">
+      <% @occasion.gifters.each do |gifter| %>
+        <div class="tile is-parent is-2">
+          <div class="tile is-child box has-background-danger">
+            <div class="title ">
+              <%= link_to gifter.name, occasion_gifter_path(@occasion, gifter), class: "has-text-white" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+      <%= link_to "Register as a participant", new_occasion_gifter_path(@occasion, @gifter), class: "button" %>
+  </section>
+</div>
+<div class="box has-background-white-ter">
+  <section class="section">
+    <div class="title">GIFTEES</div>
+      <div class="tile is-ancestor">
+        <% @occasion.giftees.each do |giftee| %>
+          <div class="tile is-parent is-2">
+            <div class="tile is-child box has-background-danger">
+              <div class="title">
+                <%= link_to giftee.name, occasion_giftee_path(@occasion, giftee), class: "has-text-white" %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <%= link_to "Add another giftee", new_occasion_giftee_path(@occasion, @giftee), class: "button" %>
+   </section>
 </div>
 <%= link_to "Edit",  edit_occasion_path(@occasion) %>
 <%= link_to "All Occasions", occasions_path %>

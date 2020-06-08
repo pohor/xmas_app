@@ -5,7 +5,9 @@
         <div class="tile is-child box">
           <p class="title"><%= present.name %></p>
           <p class="subtitle"><%= link_to "Show", present_path(present) %></p>
-          <p class="subtitle"><%= link_to "Edit", edit_present_path(present) %></p>
+          <% if present.giftee.user == current_user %>
+            <p class="subtitle"><%= link_to "Edit", edit_present_path(present) %></p>
+          <% end %>
         </div>
       </div>
     <% end %>
