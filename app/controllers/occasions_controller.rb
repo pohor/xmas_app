@@ -40,6 +40,13 @@ class OccasionsController < ApplicationController
     end
   end
 
+  def drawing
+    occasion = Occasion.find(params[:id])
+    occasion.draw_lots
+    flash[:notice] = "The drawing has been done!"
+    redirect_to occasion
+  end
+
   private
 
   def occasion_params

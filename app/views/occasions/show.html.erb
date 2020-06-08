@@ -4,14 +4,15 @@
 <div class="subtitle">
   <%= format(@occasion.date) %>
 </div>
+<div class="section has-text-centered">
+  <%=button_to "Let's do the drawing!", drawing_path(@occasion), class: "button is-large is-danger is-outlined", method: :get %>
+</div>
   <div class="subtitle">
     Who will be taking part?
   </div>
 <div class="box">
   <section class="section">
-    <div class="title">
-      GIFTERS
-    </div>
+    <div class="title">GIFTERS</div>
     <div class="tile is-ancestor">
       <% @occasion.gifters.each do |gifter| %>
         <div class="tile is-parent is-2">
