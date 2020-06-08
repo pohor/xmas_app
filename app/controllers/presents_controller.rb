@@ -1,6 +1,6 @@
 class PresentsController < ApplicationController
   def index
-    @presents = Present.all.where("giftee_id = ?", Giftee.where(user_is_present: true).where(user_id: current_user.id).pluck(:id) )
+    @presents = Present.where(giftee: Giftee.where(user_is_present: true).where(user_id: current_user.id))
   end
 
   def show

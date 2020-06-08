@@ -42,8 +42,11 @@ class OccasionsController < ApplicationController
 
   def drawing
     occasion = Occasion.find(params[:id])
-    occasion.draw_lots
-    flash[:notice] = "The drawing has been done!"
+    if occasion.draw_lots
+      flash[:notice] = "The drawing has been done!"
+    else
+      flash[:alert] = "Drawing lots is unnecessary now!"
+    end
     redirect_to occasion
   end
 

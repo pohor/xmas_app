@@ -1,0 +1,28 @@
+<% @occasions.each do |occasion| %>
+  <div class="box">
+    <section class="section">
+      <div class="title"><%= occasion.name %></div>
+      <% @gifters.each do |gifter| %>
+        <% if occasion.gifters.include?(gifter) %>
+          <% gifter.giftees.each_slice(2) do |giftees| %>
+            <div class="tile is-ancestor">
+              <% giftees.each do |giftee| %>
+                <div class="tile is-parent is-6">
+                  <div class="tile is-child box">
+                    <div class="title">
+                      <%= giftee.name %>
+                    </div>
+                    <% giftee.presents.each do |present| %>
+                      <%= present.name %>
+                    <% end %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
+    </section>
+  </div>
+<% end %>
+

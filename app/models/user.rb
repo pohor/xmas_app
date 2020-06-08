@@ -6,6 +6,6 @@ class User < ApplicationRecord
 
   # As a user, I can "admin" the giftees that will not register into the app
   has_many :giftees
-  # As a user, I can only "admin" one gifter (myself)
-  has_one :gifter
+  # As a user, I can only "admin" one gifter FOR AN OCCASION (myself)
+  has_many :gifters
 end

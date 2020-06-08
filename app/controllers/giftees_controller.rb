@@ -1,5 +1,10 @@
 class GifteesController < ApplicationController
 
+  def index
+    @gifters = current_user.gifters
+    @occasions = Occasion.where(gifters: @gifters)
+  end
+
   def show
     @giftee = Giftee.find(params[:id])
     @occasion = @giftee.occasion
@@ -14,6 +19,7 @@ class GifteesController < ApplicationController
   def create
     @occasion = Occasion.find(params[:occasion_id])
     @giftee = @occasion.giftees.new(giftee_params)
+    binding.pry
     if @giftee.save
       flash[:notice] = "You have successfuly added a giftee!"
       redirect_to @occasion

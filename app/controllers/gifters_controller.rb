@@ -33,6 +33,7 @@ class GiftersController < ApplicationController
 
   def create_giftee
     occasion = Occasion.find(params[:occasion_id])
+    binding.pry
     occasion.giftees.create(name: params[:gifter][:name], user: current_user, user_is_present: true)
   end
 end

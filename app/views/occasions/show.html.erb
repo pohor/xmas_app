@@ -13,35 +13,49 @@
 <div class="box">
   <section class="section">
     <div class="title">GIFTERS</div>
-    <div class="tile is-ancestor">
-      <% @occasion.gifters.each do |gifter| %>
-        <div class="tile is-parent is-2">
-          <div class="tile is-child box has-background-danger">
-            <div class="title ">
-              <%= link_to gifter.name, occasion_gifter_path(@occasion, gifter), class: "has-text-white" %>
+      <% @occasion.gifters.each_slice(4) do |gifters| %>
+        <div class="tile is-ancestor">
+          <% gifters.each do |gifter| %>
+            <div class="tile is-parent is-3">
+              <div class="tile is-child box has-background-danger">
+                <div class="title ">
+                  <%= link_to gifter.name, occasion_gifter_path(@occasion, gifter), class: "has-text-white" %>
+                  <% if has_giftee?(gifter) %>
+                    <span class="icon has-text-light">
+                      <i class="fas fa-check-square"></i>
+                    </span>
+                  <% end %>
+                </div>
+              </div>
             </div>
-          </div>
+          <% end %>
         </div>
       <% end %>
-    </div>
-      <%= link_to "Register as a participant", new_occasion_gifter_path(@occasion, @gifter), class: "button" %>
+       <%= link_to "Register as a participant", new_occasion_gifter_path(@occasion, @gifter), class: "button is-danger is-outlined" %>
   </section>
 </div>
 <div class="box has-background-white-ter">
   <section class="section">
     <div class="title">GIFTEES</div>
-      <div class="tile is-ancestor">
-        <% @occasion.giftees.each do |giftee| %>
-          <div class="tile is-parent is-2">
-            <div class="tile is-child box has-background-danger">
-              <div class="title">
-                <%= link_to giftee.name, occasion_giftee_path(@occasion, giftee), class: "has-text-white" %>
+        <% @occasion.giftees.each_slice(4) do |giftees| %>
+          <div class="tile is-ancestor">
+            <% giftees.each do |giftee| %>
+              <div class="tile is-parent is-3">
+                <div class="tile is-child box has-background-danger">
+                  <div class="title">
+                    <%= link_to giftee.name, occasion_giftee_path(@occasion, giftee), class: "has-text-white" %>
+                    <% if has_gifter?(giftee) %>
+                      <span class="icon has-text-light">
+                        <i class="fas fa-check-square"></i>
+                      </span>
+                    <% end %>
+                  </div>
+                </div>
               </div>
-            </div>
+            <% end %>
           </div>
         <% end %>
-      </div>
-      <%= link_to "Add another giftee", new_occasion_giftee_path(@occasion, @giftee), class: "button" %>
+      <%= link_to "Add another giftee", new_occasion_giftee_path(@occasion, @giftee), class: "button is-danger is-outlined" %>
    </section>
 </div>
 <%= link_to "Edit",  edit_occasion_path(@occasion) %>
