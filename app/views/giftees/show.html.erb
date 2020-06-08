@@ -1,11 +1,17 @@
-<%= @giftee.name %>
-<div>
-  <%= "#{@giftee.name}'s Wishlist:" %>
-  <%= render partial: "shared/presents_list", locals: { presents: @giftee.presents} %>
-  <% if current_user == @giftee.user %>
-    Add new present to <%= "#{@giftee.name}'s wishlist:" %>
-    <%= render "presents/form" %>
-  <% end %>
+<div class="section">
+  <div class="tile">
+    <%= "#{@giftee.name}'s Wishlist:" %>
+  </div>
+  <section class="section">
+    <%= render partial: "shared/presents_list", locals: { presents: @giftee.presents} %>
+  </section>
 </div>
-<%=  %>
+<% if current_user == @giftee.user %>
+  <section class="section">
+    <div class="subtitle">
+      Add new present to <%= "#{@giftee.name}'s wishlist:" %>
+    </div>
+    <%= render "presents/form" %>
+  </section>
+<% end %>
 <%= link_to "Back", occasion_path(@giftee.occasion) %>

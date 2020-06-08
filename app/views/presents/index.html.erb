@@ -1,8 +1,12 @@
-<div>
-  <% if @presents.empty? %>
-    You don't have any registered presents yet!
-  <% else %>
-    Presents from all the giftees that you have registered:
-    <%= render partial: "shared/presents_list", locals: { presents: @presents} %>
-  <% end %>
+<% if @presents.empty? %>
+<div class="title">
+  You don't have any registered presents yet!
 </div>
+  <% else %>
+<div class="title">
+  Presents from all the giftees that you have registered:
+</div>
+  <section class="section">
+    <%= render partial: "shared/presents_list", locals: { presents: @presents} %>
+  </section>
+<% end %>
