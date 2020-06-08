@@ -1,13 +1,7 @@
 <%= @giftee.name %>
 <div>
   <%= "#{@giftee.name}'s Wishlist:" %>
-  <div>
-    <% @giftee.presents.each do |present| %>
-      <p>
-        <%= present.name %>
-      </p>
-    <% end %>
-  </div>
+  <%= render partial: "shared/presents_list", locals: { presents: @giftee.presents} %>
   <% if current_user == @giftee.user %>
     Add new present to <%= "#{@giftee.name}'s wishlist:" %>
     <%= render "presents/form" %>

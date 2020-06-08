@@ -1,0 +1,13 @@
+<% presents.each_slice(4) do |presents| %>
+  <div class="tile is-ancestor">
+    <% presents.each do |present| %>
+      <div class="tile is-parent is-3">
+        <div class="tile is-child box">
+          <p class="title"><%= present.name %></p>
+          <p class="subtitle"><%= link_to "Show", present_path(present) %></p>
+          <p class="subtitle"><%= link_to "Edit", edit_present_path(present) %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
