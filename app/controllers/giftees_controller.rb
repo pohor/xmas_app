@@ -1,5 +1,4 @@
 class GifteesController < ApplicationController
-
   def index
     @gifters = current_user.gifters
     @occasions = Occasion.where(gifters: @gifters)

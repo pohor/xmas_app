@@ -65,11 +65,7 @@
                     <% end %>
                   </div>
                   <div>
-                    <% if current_user == giftee.user %>
-                    <%= link_to "Manage giftee", edit_occasion_giftee_path(@occasion, giftee), class: "has-text-white" %>
-                    <% else %>
-                    <%= link_to "Show wishlist", giftee_presents_path(giftee) %>
-                    <% end %>
+                    <%= link_to "Show wishlist", occasion_giftee_path(@occasion, giftee), class: "has-text-white" %>
                   </div>
                 </div>
               </div>

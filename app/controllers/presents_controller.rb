@@ -26,6 +26,7 @@ class PresentsController < ApplicationController
 
   def edit
     @present = Present.find(params[:id])
+    @giftee = @present.giftee
   end
 
   def update
@@ -43,6 +44,6 @@ class PresentsController < ApplicationController
   private
 
   def present_params
-    params.require(:present).permit(:name, :gifter_id, :giftee_id)
+    params.require(:present).permit(:name, :link, :gifter_id, :giftee_id)
   end
 end
