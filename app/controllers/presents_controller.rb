@@ -41,6 +41,22 @@ class PresentsController < ApplicationController
     end
   end
 
+  def assign_gifter_to_present
+    present = Present.find(params[:id])
+    gifter = present.giftee.gifter
+
+    present.gifter_id = gifter.id
+    flash[:notice] = "You've reserved the gift to buy for #{present.giftee.name}" if present.save
+    redirect_to occasion_giftee_path(present.giftee.occasion, present.giftee)
+  end
+
+  def remove_gifter_from_present
+    present = Present.find(params[:id])
+    present.gifter_id = nil
+    flash[:notice] = "You've removed the gift from gifts you'll buy for #{present.giftee.name}" if present.save
+    redirect_to occasion_giftee_path(present.giftee.occasion, present.giftee)
+  end
+
   private
 
   def present_params

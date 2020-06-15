@@ -4,6 +4,14 @@
       <div class="tile is-parent is-3">
         <div class="tile is-child box">
           <p class="title"><%= present.name %></p>
+          <% if present.giftee.gifter.present? %>
+            <% if present.giftee.gifter.user == current_user && present.gifter_id.blank? %>
+             <p><%= button_to "I want to buy that present!", assign_gifter_to_present_path(present), class: "button is-large is-danger is-outlined", method: :get %></p>
+            <% elsif current_user.gifters.any? { |gftr| gftr.id == present.gifter_id } %>
+              <p>You've already reserved that present to buy to <%=present.giftee.name %></p>
+              <p><%= button_to "click here", remove_gifter_from_present_path(present), class: "button is-large is-danger is-outlined", method: :get %> if you want to resign</p>
+            <% end %>
+          <% end %>
           <p class="subtitle"><%= link_to "Show", present_path(present) %></p>
           <% if present.giftee.user == current_user %>
             <p class="subtitle"><%= link_to "Edit", edit_present_path(present) %></p>
