@@ -1,6 +1,11 @@
 class PresentsController < ApplicationController
-  def index
+  def user_index
     @presents = Present.where(giftee: Giftee.where(user_is_present: true).where(user_id: current_user.id))
+    render "presents/user_index"
+  end
+
+  def index
+    @presents = Giftee.find(params[:id]).presents
   end
 
   def show

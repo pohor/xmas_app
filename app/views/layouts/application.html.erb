@@ -28,7 +28,7 @@
           <div class ="navbar-item">Hello, <%= current_user.name %></div>
           <div class ="navbar-item"><%= link_to 'Home', root_path %></div>
           <div class ="navbar-item"><%= link_to 'Occasions', occasions_path %></div>
-          <div class ="navbar-item"><%= link_to 'Your Wishlist', presents_path %></div>
+          <div class ="navbar-item"><%= link_to 'Your Wishlist', user_presents_index_path(current_user) %></div>
           <div class ="navbar-item"><%= link_to 'Your giftees', giftees_path %></div>
         </div>
         <div class="navbar-end">

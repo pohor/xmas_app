@@ -16,6 +16,7 @@ class Occasion < ApplicationRecord
 
   def assign_giftee(drawing_gifter)
     giftees.each do |drawing_giftee|
+      next if drawing_gifter.user == drawing_giftee.user
       if drawing_giftee.gifter.blank?
         drawing_giftee.update(gifter: drawing_gifter)
       end

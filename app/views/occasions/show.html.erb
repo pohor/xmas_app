@@ -4,9 +4,11 @@
 <div class="subtitle">
   <%= format(@occasion.date) %>
 </div>
-<div class="section has-text-centered">
-  <%=button_to "Let's do the drawing!", drawing_path(@occasion), class: "button is-large is-danger is-outlined", method: :get %>
-</div>
+<% if allow_drawing?(@occasion) %>
+  <div class="section has-text-centered">
+    <%=button_to "Let's do the drawing!", drawing_path(@occasion), class: "button is-large is-danger is-outlined", method: :get %>
+  </div>
+<% end %>
   <div class="subtitle">
     Who will be taking part?
   </div>
@@ -20,10 +22,16 @@
               <div class="tile is-child box has-background-danger">
                 <div class="title ">
                   <%= link_to gifter.name, occasion_gifter_path(@occasion, gifter), class: "has-text-white" %>
+                </div>
+                <div class="is-size-7">has giftee?
                   <% if has_giftee?(gifter) %>
-                    <span class="icon has-text-light">
+                    <span class="icon">
                       <i class="fas fa-check-square"></i>
                     </span>
+                  <% else %>
+                     <span class="icon">
+                        <i class="fas fa-ban"></i>
+                      </span>
                   <% end %>
                 </div>
               </div>
@@ -42,12 +50,25 @@
             <% giftees.each do |giftee| %>
               <div class="tile is-parent is-3">
                 <div class="tile is-child box has-background-danger">
-                  <div class="title">
-                    <%= link_to giftee.name, occasion_giftee_path(@occasion, giftee), class: "has-text-white" %>
+                  <div class="title has-text-white">
+                    <%= giftee.name %>
+                  </div>
+                  <div class="is-size-7">has gifter?
                     <% if has_gifter?(giftee) %>
-                      <span class="icon has-text-light">
+                      <span class="icon">
                         <i class="fas fa-check-square"></i>
                       </span>
+                    <% else %>
+                      <span class="icon">
+                        <i class="fas fa-ban"></i>
+                      </span>
+                    <% end %>
+                  </div>
+                  <div>
+                    <% if current_user == giftee.user %>
+                    <%= link_to "Manage giftee", edit_occasion_giftee_path(@occasion, giftee), class: "has-text-white" %>
+                    <% else %>
+                    <%= link_to "Show wishlist", giftee_presents_path(giftee) %>
                     <% end %>
                   </div>
                 </div>
