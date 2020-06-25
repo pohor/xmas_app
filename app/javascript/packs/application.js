@@ -15,3 +15,14 @@ require("navigation/button")
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+import * as urlExist from "url-exist";
+
+document.addEventListener('DOMContentLoaded', function (event) {
+    document.getElementById('present-submit-button').addEventListener('click', (event) => {
+        (async () => {
+           await urlExist(document.getElementById('present-link-input').val());
+           console.log("Hello");
+           event.preventDefault()
+        })();
+    });
+});

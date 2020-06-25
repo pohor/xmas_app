@@ -2,7 +2,7 @@
   <%= f.label :name %>
   <%= f.text_field :name, class: "textarea is-primary" %>
   <%= f.label :link %>
-  <%= f.text_field :link %>
+  <%= f.text_field :link, id: "present-link-input" %>
   <%= f.hidden_field :giftee_id, value: @giftee.id %>
-  <%= f.submit %>
+  <%= f.submit id: "present-submit-button" %>
 <% end %>
