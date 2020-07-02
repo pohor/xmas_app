@@ -57,9 +57,23 @@ class PresentsController < ApplicationController
     redirect_to occasion_giftee_path(present.giftee.occasion, present.giftee)
   end
 
+  def validate
+    present = Present.new(validate_params)
+    present.valid?
+    present_field = validate_params.keys.first.try(:to_sym)
+    validation_response = !present.errors.include?(present_field)
+    respond_to do |format|
+      format.json { render json: {field_name: present_field, valid: validation_response, message: present.errors[present_field]} }
+    end
+  end
+
   private
 
   def present_params
     params.require(:present).permit(:name, :link, :gifter_id, :giftee_id)
+  end
+
+  def validate_params
+    params.require(:present).permit(:name, :link)
   end
 end
