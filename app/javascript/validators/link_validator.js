@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', function (event) {
         const fieldsToValidate = document.getElementsByClassName('validate_this_field')
         Array.from(fieldsToValidate).forEach(field =>
             field.addEventListener('blur', (event) => {
-                event.preventDefault();
                 const fieldValue = field.value;
                 const fieldName = field.name;
                 const controllerName = document.getElementById('controller_name').value
@@ -30,6 +29,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
                                 field.classList.add('is-success');
                                 helpText.innerHTML = ''
                             } else {
+                                event.preventDefault();
                                 field.classList.add('is-danger');
                                 helpText.style.removeProperty('display');
                                 helpText.classList.add('help');

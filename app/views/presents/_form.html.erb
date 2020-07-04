@@ -1,5 +1,5 @@
 <%= form_for @present do |f| %>
-  <%= f.hidden_field :controller_name, id: "controller_name", value: "presents" %>
+  <%= hidden_field_tag :controller_name, "presents"%>
   <%= f.label :name %>
   <%= f.text_field :name, class: "textarea is-primary", class: "input validate_this_field" %>
   <p id="name_help_text" style="display: none"></p>
