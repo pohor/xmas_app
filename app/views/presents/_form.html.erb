@@ -1,13 +1,13 @@
 <%= form_for @present do |f| %>
   <%= hidden_field_tag :controller_name, "presents"%>
-  <%= f.label :name %>
+  <%= f.label :name, class: "label" %>
   <%= f.text_field :name, class: "textarea is-primary", class: "input validate_this_field" %>
   <p id="name_help_text" style="display: none"></p>
-  <%= f.label :link %>
+  <%= f.label :link, class: "label" %>
   <%= f.text_field :link, id: "presents", class: "input validate_this_field" %>
   <p id="link_help_text" style="display: none"></p>
   <% if @giftee %>
     <%= f.hidden_field :giftee_id, value: @giftee.id %>
   <% end %>
-  <%= f.submit id: "present-submit-button" %>
+  <%= f.submit class: "button is-primary is-outlined" %>
 <% end %>

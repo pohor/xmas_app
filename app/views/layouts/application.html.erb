@@ -18,11 +18,20 @@
     <% if flash[:alert] %>
       <div class="notification is-warning"><button class="delete" id="close-alert-flash"></button><%= alert %></div>
     <% end %>
-    <div class="navbar" role="navigation" aria-label="main navigation">
-      <div class="navbar-brand">
-        <%= image_tag("logo.png", alt: "logo", class: "image is-64x64") %>
-        <br>Christmas App
+    <section class="hero is-medium is-primary is-bold">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">
+              <%= image_tag("logo.png", alt: "logo", class: "image is-96x96") %>
+              <br>Christmas App
+          </h1>
+          <h2 class="subtitle">
+            Or whatever occasion you don't know how to deal with presents on
+          </h2>
+        </div>
       </div>
+    </section>
+    <div class="navbar" role="navigation" aria-label="main navigation">
       <% if user_signed_in? %>
         <div class="navbar-start">
           <div class ="navbar-item">Hello, <%= current_user.name %></div>
