@@ -1,6 +1,13 @@
-<% @occasions.each do |occasion| %>
-  <div>
-    <%= link_to occasion.name, occasion_path(occasion) %>
+<div class="level">
+  <div class="level-item">
+    <% @occasions.each do |occasion| %>
+      <div>
+        <%= link_to occasion.name, occasion_path(occasion) %>
+      </div>
+    <% end %>
+    <div class="subtitle has-text-primary">
+      <% label = @ocassions.blank? ? "No occasions created yet! Create new occasion" : "Add new occasion" %>
+      <%= link_to label, new_occasion_path, class: "button is-primary" %>
+    </div>
   </div>
-<% end %>
-<%= link_to "New Occasion", new_occasion_path %>
+</div>

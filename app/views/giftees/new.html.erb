@@ -1,7 +1,11 @@
-<%= form_for [@occasion, @giftee] do |f| %>
-  <%= f.label :name, class: "label" %>
-  <%= f.text_field :name %>
-  <%= f.label "Who will me managing this giftee?", class: "label" %>
-  <%= f.collection_radio_buttons(:user_id, User.all, :id, :name) %>
-  <%= f.submit class: "button is-primary is-outlined" %>
-<% end %>
+<div class="level">
+  <div class="level-item">
+    <%= form_for [@occasion, @giftee] do |f| %>
+      <%= f.label :name, class: "label" %>
+      <%= f.text_field :name %>
+      <%= f.label "Who will me managing this giftee?", class: "label" %>
+      <%= f.collection_radio_buttons(:user_id, User.all, :id, :name) %>
+      <%= f.submit class: "button is-primary is-outlined" %>
+    <% end %>
+  </div>
+</div>

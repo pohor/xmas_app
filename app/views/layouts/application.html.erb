@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>XmasApp</title>
+    <title>
+      presentsApp
+    </title>
+    <link rel="icon" type="image/png" href="/assets/logo-a1389299592d500b217f7a0e1b0f7f14c1ac2cb604478fee89dbce43d7db4700.png">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -23,7 +26,7 @@
         <div class="container">
           <h1 class="title">
               <%= image_tag("logo.png", alt: "logo", class: "image is-96x96") %>
-              <br>Christmas App
+              <br>Presents App
           </h1>
           <h2 class="subtitle">
             Or whatever occasion you don't know how to deal with presents on
@@ -31,29 +34,29 @@
         </div>
       </div>
     </section>
-    <div class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar is-primary" role="navigation" aria-label="main navigation">
       <% if user_signed_in? %>
         <div class="navbar-start">
           <div class ="navbar-item">Hello, <%= current_user.name %></div>
-          <div class ="navbar-item"><%= link_to 'Home', root_path %></div>
-          <div class ="navbar-item"><%= link_to 'Occasions', occasions_path %></div>
-          <div class ="navbar-item"><%= link_to 'Your Wishlist', user_presents_index_path(current_user) %></div>
-          <div class ="navbar-item"><%= link_to 'Your giftees', giftees_path %></div>
+          <div class ="navbar-item"><%= link_to 'Home', root_path, class: "has-text-white" %></div>
+          <div class ="navbar-item"><%= link_to 'Occasions', occasions_path, class: "has-text-white" %></div>
+          <div class ="navbar-item"><%= link_to 'Your Wishlist', user_presents_index_path(current_user), class: "has-text-white" %></div>
+          <div class ="navbar-item"><%= link_to 'Your giftees', giftees_path, class: "has-text-white" %></div>
         </div>
         <div class="navbar-end">
-          <div class ="navbar-item"><%= link_to 'Log out', destroy_user_session_path, method: :delete %></div>
-          <div class ="navbar-item"><%= link_to 'Your Profile', edit_user_registration_path %></div>
+          <div class ="navbar-item"><%= link_to 'Log out', destroy_user_session_path, method: :delete, class: "has-text-white" %></div>
+          <div class ="navbar-item"><%= link_to 'Your Profile', edit_user_registration_path, class: "has-text-white" %></div>
         </div>
       <% else %>
         <div class="navbar-start">
-          <div class ="navbar-item"> <%= link_to 'Log in', new_user_session_path%></div>
-          <div class ="navbar-item"><%= link_to 'Sign up', new_user_registration_path %></div>
+          <div class ="navbar-item"> <%= link_to 'Log in', new_user_session_path, class: "has-text-white"%></div>
+          <div class ="navbar-item"><%= link_to 'Sign up', new_user_registration_path, class: "has-text-white" %></div>
         </div>
       <% end %>
     </div>
     <section class="section">
-      <div class="content">
-      <%= yield %>
+      <div class="container">
+        <%= yield %>
       </div>
     </section>
   </body>

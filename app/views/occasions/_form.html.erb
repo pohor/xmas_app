@@ -1,7 +1,7 @@
 <%= form_for @occasion do |f| %>
   <%= f.label :name, class: "label" %>
-  <%= f.text_field :name %>
+  <%= f.text_field :name, class: "input" %>
   <%= f.label :date, class: "label" %>
-  <%= f.date_select :date %>
-  <%= f.submit class: "button is-primary is-outlined"%>
+  <%= f.date_select :date, class: "select" %>
+  <%= f.submit class: "button is-primary"%>
 <% end %>
