@@ -2,6 +2,10 @@ class Occasion < ApplicationRecord
   has_many :giftees
   has_many :gifters
 
+  validates :name, presence: true
+  validates :name, length: { minimum: 3 }
+  validates :date, presence: true
+
   def draw_lots
     performed = giftees.where(gifter_id: nil).any?
     giftees.where(gifter_id: nil).length.times do

@@ -1,10 +1,13 @@
 <div class="level">
   <div class="level-item">
     <%= form_for [@occasion, @giftee] do |f| %>
+      <%= hidden_field_tag :controller_name, "giftees"%>
       <%= f.label :name, class: "label" %>
-      <%= f.text_field :name %>
+      <%= f.text_field :name, class:"input validate_this_field" %>
+      <p id="name_help_text" style="display: none"></p>
       <%= f.label "Who will me managing this giftee?", class: "label" %>
-      <%= f.collection_radio_buttons(:user_id, User.all, :id, :name) %>
+      <%= f.collection_radio_buttons(:user_id, User.all, :id, :name, class: "radio validate_this_field")%>
+      <p id="user_id_help_text" style="display: none"></p>
       <%= f.submit class: "button is-primary is-outlined" %>
     <% end %>
   </div>

@@ -50,9 +50,23 @@ class OccasionsController < ApplicationController
     redirect_to occasion
   end
 
+  def validate
+    occasion = Occasion.new(validate_params)
+    occasion.valid?
+    occasion_field = validate_params.keys.first.try(:to_sym)
+    validation_response = !occasion.errors.include?(occasion_field)
+    respond_to do |format|
+      format.json { render json: {field_name: occasion_field, valid: validation_response, message: occasion.errors[occasion_field]} }
+    end
+  end
+
   private
 
   def occasion_params
+    params.require(:occasion).permit(:name, :date)
+  end
+
+  def validate_params
     params.require(:occasion).permit(:name, :date)
   end
 end

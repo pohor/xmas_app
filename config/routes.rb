@@ -9,10 +9,15 @@ Rails.application.routes.draw do
   root to: "home#home"
 
   resources :occasions do
-    resources :gifters
-    resources :giftees
+    collection { post :validate }
+    resources :gifters do
+    end
+    resources :giftees do
+    end
   end
 
+  post "/gifters/validate", to: "gifters#validate"
+  post "/giftees/validate", to: "giftees#validate"
   get "/occasions/:id/drawing", to: "occasions#drawing", as: "drawing"
   get "/giftees", to: "giftees#index", as: "giftees"
   get "/user/:id/presents", to: "presents#user_index", as: "user_presents_index"
