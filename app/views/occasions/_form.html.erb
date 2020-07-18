@@ -6,5 +6,7 @@
   <%= f.label :date, class: "label" %>
   <%= f.date_field :date, class: "input validate_this_field" %>
   <p id="date_help_text" style="display: none"></p>
-  <%= f.submit class: "button is-primary"%>
+  <div class="control">
+    <%= f.submit class: "button is-primary"%>
+  </div>
 <% end %>

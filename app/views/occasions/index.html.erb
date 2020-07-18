@@ -1,13 +1,28 @@
-<div class="level">
-  <div class="level-item">
-    <% @occasions.each do |occasion| %>
-      <div>
-        <%= link_to occasion.name, occasion_path(occasion) %>
+<div class="section">
+  <% if @occasions.any? %>
+    <% @occasions.each_slice(4) do |occasions| %>
+      <div class="tile is-ancestor">
+        <% occasions.each do |occasion| %>
+          <div class="tile is-parent is-3">
+            <div class="tile is-child box">
+              <div class="title">
+                <%= link_to occasion.name, occasion_path(occasion), class: "has-text-primary" %>
+              </div>
+              <div class="subtitle has-text-primary">
+                <%= format(occasion.date) %>
+              </div>
+            </div>
+          </div>
+        <% end %>
       </div>
     <% end %>
+  <% else %>
     <div class="subtitle has-text-primary">
-      <% label = @ocassions.blank? ? "No occasions created yet! Create new occasion" : "Add new occasion" %>
-      <%= link_to label, new_occasion_path, class: "button is-primary" %>
+      No occasions created yet!
     </div>
-  </div>
+  <% end %>
+</div>
+<div class="section">
+  <% label = @ocassions.blank? ? "Add new occasion" :  "Create an occasion" %>
+  <%= link_to label, new_occasion_path, class: "button is-large is-fullwidth is-primary" %>
 </div>

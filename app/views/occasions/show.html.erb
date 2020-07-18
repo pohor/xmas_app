@@ -20,7 +20,7 @@
           <% gifters.each do |gifter| %>
             <div class="tile is-parent is-3">
               <div class="tile is-child box has-background-danger">
-                <div class="title ">
+                <div class="title">
                   <%= link_to gifter.name, occasion_gifter_path(@occasion, gifter), class: "has-text-white" %>
                 </div>
                 <div class="is-size-7">has giftee?
@@ -39,7 +39,11 @@
           <% end %>
         </div>
       <% end %>
-       <%= link_to "Register as a participant", new_occasion_gifter_path(@occasion, @gifter), class: "button is-danger is-outlined" %>
+      <% if already_registered_as_gifter?(@occasion) %>
+        You already registered as a participant.
+      <% else %>
+        <%= link_to "Register as a participant", new_occasion_gifter_path(@occasion, @gifter), class: "button is-danger is-outlined" %>
+      <% end %>
   </section>
 </div>
 <div class="box has-background-white-ter">
@@ -75,5 +79,6 @@
       <%= link_to "Add another giftee", new_occasion_giftee_path(@occasion, @giftee), class: "button is-danger is-outlined" %>
    </section>
 </div>
-<%= link_to "Edit",  edit_occasion_path(@occasion) %>
-<%= link_to "All Occasions", occasions_path %>
+<%= link_to "Edit",  edit_occasion_path(@occasion), class: "button is-medium is-fullwidth is-primary " %>
+<br>
+<%= link_to "All Occasions", occasions_path, class: "button is-medium is-fullwidth is-primary" %>

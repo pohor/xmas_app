@@ -11,13 +11,12 @@
               <%= link_to "Preview not available", present.link %>
             <% end %>
           </figure>
-          <% if present.giftee.gifter.present? %>
-            <% if present.giftee.gifter.user == current_user && present.gifter_id.blank? %>
-             <p><%= button_to "I want to buy that present!", assign_gifter_to_present_path(present), class: "button is-large is-danger is-outlined" %></p>
-            <% elsif current_user.gifters.any? { |gftr| gftr.id == present.gifter_id } %>
-              <p>You've already reserved that present to buy to <%=present.giftee.name %></p>
-              <p><%= button_to "click here", remove_gifter_from_present_path(present), class: "button is-large is-danger is-outlined" %> if you want to resign</p>
-            <% end %>
+          <% if eligible_to_reserve_the_present?(present) %>
+           <p><%= button_to "I want to buy that present!", assign_gifter_to_present_path(present), class: "button is-large is-danger is-outlined" %></p>
+          <% end %>
+          <% if already_reserved_the_present?(present) %>
+            <p>You've already reserved that present to buy to <%=present.giftee.name %></p>
+            <p><%= button_to "click here", remove_gifter_from_present_path(present), class: "button is-large is-danger is-outlined" %> if you want to resign</p>
           <% end %>
           <p class="subtitle"><%= link_to "Show", present_path(present) %></p>
           <% if present.giftee.user == current_user %>
