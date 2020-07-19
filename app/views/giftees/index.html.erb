@@ -15,9 +15,9 @@
                     <% if giftee.presents.any? %>
                       <%= link_to "Go to wishlist", occasion_giftee_path(occasion, giftee), class: "has-text-black" %>
                       <div class="subtitle">
-                        <% if giftee.presents.any? { |p| p.gifter_id == gifter.id } %>
+                        <% if presents_reserved_by_gifter_for_giftee(giftee).any? %>
                           You decided to buy these presents:
-                          <% giftee.presents.where(gifter_id: gifter.id).each do |pt| %>
+                          <% presents_reserved_by_gifter_for_giftee(giftee).each do |pt| %>
                             <%= link_to pt.name, present_path(pt), class: "has-text-primary" %>
                           <% end %>
                         <% else %>
