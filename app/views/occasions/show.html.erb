@@ -20,8 +20,8 @@
           <% gifters.each do |gifter| %>
             <div class="tile is-parent is-3">
               <div class="tile is-child box has-background-danger">
-                <div class="title">
-                  <%= link_to gifter.name, occasion_gifter_path(@occasion, gifter), class: "has-text-white" %>
+                <div class="title has-text-white">
+                  <%= gifter.name %>
                 </div>
                 <div class="is-size-7">has giftee?
                   <% if has_giftee?(gifter) %>
@@ -79,6 +79,6 @@
       <%= link_to "Add another giftee", new_occasion_giftee_path(@occasion, @giftee), class: "button is-danger is-outlined" %>
    </section>
 </div>
-<%= link_to "Edit",  edit_occasion_path(@occasion), class: "button is-medium is-fullwidth is-primary " %>
+<%= link_to "Edit Occasion",  edit_occasion_path(@occasion), class: "button is-medium is-fullwidth is-primary " %>
 <br>
 <%= link_to "All Occasions", occasions_path, class: "button is-medium is-fullwidth is-primary" %>

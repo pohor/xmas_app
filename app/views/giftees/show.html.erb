@@ -3,7 +3,11 @@
     <%= "#{@giftee.name}'s Wishlist:" %>
   </div>
   <section class="section">
-    <%= render partial: "shared/presents_list", locals: { presents: @giftee.presents} %>
+    <% if @giftee.presents.any? %>
+      <%= render partial: "shared/presents_list", locals: { presents: @giftee.presents} %>
+    <% else %>
+      Ola has not registered any presents yet!
+    <% end %>
   </section>
 </div>
 <% if current_user == @giftee.user %>
@@ -14,4 +18,4 @@
     <%= render "presents/form" %>
   </section>
 <% end %>
-<%= link_to "Back", occasion_path(@giftee.occasion) %>
+<%= link_to "Back to the Occasion", occasion_path(@giftee.occasion), class: "button is-fullwidth is-primary has-text-white" %>

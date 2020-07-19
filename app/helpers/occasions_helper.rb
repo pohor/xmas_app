@@ -3,7 +3,9 @@ module OccasionsHelper
     return unless occasion.giftees.present?
     return unless occasion.gifters.present?
 
-    occasion.giftees.length > 1 && occasion.gifters.length > 1
+    occasion.giftees.length > 1 &&
+      occasion.gifters.length > 1 &&
+      occasion.giftees.any? { |gt| gt.gifter_id == nil }
   end
 
   def already_registered_as_gifter?(occasion)

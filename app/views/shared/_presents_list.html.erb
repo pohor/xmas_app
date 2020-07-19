@@ -4,13 +4,24 @@
       <div class="tile is-parent is-3">
         <div class="tile is-child box">
           <p class="title"><%= present.name %></p>
-          <figure class="image is-128x128">
-            <% if present.scrapped_present_thumbnail%>
-              <%= link_to image_tag(present.scrapped_present_thumbnail), present.link %>
-            <% else %>
-              <%= link_to "Preview not available", present.link %>
-            <% end %>
-          </figure>
+          <% if belongs_to_current_user?(present) %>
+            <p class="subtitle">
+              <%=link_to present.giftee.occasion.name, occasion_path(present.giftee.occasion), class: "has-text-black" %>
+            <br>
+              <%= format(present.giftee.occasion.date) %>
+            </p>
+          <% end %>
+          <nav class="level">
+            <div class="level-item has-text-centered">
+              <figure class='image is-128x128'>
+                <% if present.scrapped_present_thumbnail%>
+                  <%= link_to image_tag(present.scrapped_present_thumbnail), present.link %>
+                <% else %>
+                  <%= link_to "Preview not available", present.link %>
+                <% end %>
+              </figure>
+            </div>
+          </nav>
           <% if eligible_to_reserve_the_present?(present) %>
            <p><%= button_to "I want to buy that present!", assign_gifter_to_present_path(present), class: "button is-large is-danger is-outlined" %></p>
           <% end %>
@@ -18,9 +29,9 @@
             <p>You've already reserved that present to buy to <%=present.giftee.name %></p>
             <p><%= button_to "click here", remove_gifter_from_present_path(present), class: "button is-large is-danger is-outlined" %> if you want to resign</p>
           <% end %>
-          <p class="subtitle"><%= link_to "Show", present_path(present) %></p>
-          <% if present.giftee.user == current_user %>
-            <p class="subtitle"><%= link_to "Edit", edit_present_path(present) %></p>
+          <p class="subtitle"><%= link_to "Show", present_path(present), class: "button is-fullwidth has-text-black"%></p>
+          <% if belongs_to_current_user?(present) %>
+            <p class="subtitle"><%= link_to "Edit", edit_present_path(present), class: "button is-fullwidth has-text-black" %></p>
           <% end %>
         </div>
       </div>

@@ -1,7 +1,7 @@
 <% @occasions.each do |occasion| %>
   <div class="box">
     <section class="section">
-      <div class="title"><%= occasion.name %></div>
+      <div class="title"><%= link_to occasion.name, occasion_path(occasion), class: "has-text-black" %></div>
       <% @gifters.each do |gifter| %>
         <% if occasion.gifters.include?(gifter) %>
           <% gifter.giftees.each_slice(2) do |giftees| %>
@@ -10,10 +10,22 @@
                 <div class="tile is-parent is-6">
                   <div class="tile is-child box">
                     <div class="title">
-                      <%= giftee.name %>
+                      <%= link_to giftee.name, occasion_giftee_path(occasion, giftee), class: "has-text-black" %>
                     </div>
-                    <% giftee.presents.each do |present| %>
-                      <%= present.name %>
+                    <% if giftee.presents.any? %>
+                      <%= link_to "Go to wishlist", occasion_giftee_path(occasion, giftee), class: "has-text-black" %>
+                      <div class="subtitle">
+                        <% if giftee.presents.any? { |p| p.gifter_id == gifter.id } %>
+                          You decided to buy these presents:
+                          <% giftee.presents.where(gifter_id: gifter.id).each do |pt| %>
+                            <%= link_to pt.name, present_path(pt), class: "has-text-primary" %>
+                          <% end %>
+                        <% else %>
+                          You haven't reserved any presents to buy yet.
+                        <% end %>
+                      </div>
+                    <% else %>
+                      Giftee has not registered any presents yet!
                     <% end %>
                   </div>
                 </div>

@@ -14,4 +14,16 @@ module PresentsHelper
 
     current_user.gifters.any? { |gftr| gftr.id == present.gifter_id }
   end
+
+  def belongs_to_current_user?(present)
+    present.giftee.user == current_user
+  end
+
+  def present_reserved_by(present)
+    if already_reserved_the_present?(present)
+      "You"
+    else
+      "Someone"
+    end
+  end
 end

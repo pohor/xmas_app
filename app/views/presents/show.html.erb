@@ -1,3 +1,30 @@
-<%= @present.name %>
-<%= @present.link %>
-<%= link_to "Back",  occasion_giftee_path(@present.giftee.occasion, @present.giftee) %>
+<div class="level">
+  <div class="level-item title">
+    <%= @present.name %>
+  </div>
+</div>
+<div class="level">
+  <div class="level-item has-text-centered">
+    <figure class='image is-128x128'>
+      <% if @present.scrapped_present_thumbnail%>
+        <%= link_to image_tag(@present.scrapped_present_thumbnail), @present.link %>
+      <% else %>
+        <%= link_to "Preview not available", @present.link %>
+      <% end %>
+    </figure>
+  </div>
+</div>
+<div class="level">
+  <div class="level-item">
+    <div class="subtitle">
+      <% if @present.gifter_id.present? && current_user != @present.giftee.user_id %>
+        This present is already reserved to be bought by <%= present_reserved_by(@present) %>.
+      <% elsif current_user != @present.giftee.user_id %>
+        This present has not been reserved yet.
+      <% else %>
+        <%= link_to "Edit this present", edit_present_path(@present) %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<%= link_to "Back",  occasion_giftee_path(@present.giftee.occasion, @present.giftee), class: "button is-fullwidth is-primary" %>

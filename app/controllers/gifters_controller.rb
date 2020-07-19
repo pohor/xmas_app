@@ -1,11 +1,6 @@
 class GiftersController < ApplicationController
   after_action :create_giftee, only: [:create]
 
-  def show
-    @gifter = Gifter.find(params[:id])
-    @occasion = @gifter.occasion
-  end
-
   def new
     @occasion = Occasion.find(params[:occasion_id])
     @gifter = @occasion.gifters.build
