@@ -15,6 +15,7 @@ class OccasionsController < ApplicationController
   def create
     @occasion = Occasion.new(occasion_params)
     if @occasion.save
+      OccasionMailer.occasion_created_email(current_user, @occasion).deliver
       flash[:notice] = "You've added an occasion!"
       redirect_to @occasion
     else
