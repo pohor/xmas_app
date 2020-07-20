@@ -12,6 +12,13 @@ class PresentsController < ApplicationController
     @present = Present.find(params[:id])
   end
 
+  def destroy
+    @present = Present.find(params[:id])
+    giftee = @present.giftee
+    @present.destroy
+    redirect_to presents_path(giftee.id)
+  end
+
   def create
     @present = Present.new(present_params)
     if @present.save

@@ -1,0 +1,5 @@
+Hi, <%= @gifter.name %>,
+
+You have just drawn a new giftee for <%= @occasion.name %>!
+You're going to be giving presents to <%= @giftee.name %>.
+See their wishlist <%= link_to "here", occasion_giftee_url(@occasion, @giftee) %>.

@@ -29,9 +29,12 @@
             <p>You've already reserved that present to buy to <%=present.giftee.name %></p>
             <p><%= button_to "click here", remove_gifter_from_present_path(present), class: "button is-large is-danger is-outlined" %> if you want to resign</p>
           <% end %>
-          <p class="subtitle"><%= link_to "Show", present_path(present), class: "button is-fullwidth has-text-black"%></p>
+          <p class="subtitle"><%= link_to "Show", present_path(present), class: "button is-fullwidth is-black"%></p>
           <% if belongs_to_current_user?(present) %>
-            <p class="subtitle"><%= link_to "Edit", edit_present_path(present), class: "button is-fullwidth has-text-black" %></p>
+            <p class="subtitle"><%= link_to "Edit", edit_present_path(present), class: "button is-fullwidth is-black" %></p>
+            <p class="subtitle">        <%= link_to 'Remove this present', present,
+                                                    :confirm => 'Are you sure?',
+                                                    :method => :delete , class: "button is-fullwidth is-black"%></p>
           <% end %>
         </div>
       </div>

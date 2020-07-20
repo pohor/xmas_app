@@ -19,10 +19,13 @@
     <div class="subtitle">
       <% if @present.gifter_id.present? && current_user != @present.giftee.user_id %>
         This present is already reserved to be bought by <%= present_reserved_by(@present) %>.
-      <% elsif current_user != @present.giftee.user_id %>
+      <% elsif !belongs_to_current_user?(@present) %>
         This present has not been reserved yet.
       <% else %>
-        <%= link_to "Edit this present", edit_present_path(@present) %>
+        <%= link_to "Edit this present", edit_present_path(@present), class: "button is-fullwidth is-black" %><br>
+        <%= link_to 'Remove this present', @present,
+                    :confirm => 'Are you sure?',
+                    :method => :delete , class: "button is-fullwidth is-black"%>
       <% end %>
     </div>
   </div>

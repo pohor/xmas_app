@@ -13,12 +13,12 @@
                       <%= link_to giftee.name, occasion_giftee_path(occasion, giftee), class: "has-text-black" %>
                     </div>
                     <% if giftee.presents.any? %>
-                      <%= link_to "Go to wishlist", occasion_giftee_path(occasion, giftee), class: "has-text-black" %>
+                      <%= link_to "Go to wishlist", occasion_giftee_path(occasion, giftee), class: "button is-black" %>
                       <div class="subtitle">
-                        <% if presents_reserved_by_gifter_for_giftee(giftee).any? %>
-                          You decided to buy these presents:
-                          <% presents_reserved_by_gifter_for_giftee(giftee).each do |pt| %>
-                            <%= link_to pt.name, present_path(pt), class: "has-text-primary" %>
+                        <% if presents_reserved_by_gifter_for_giftee(giftee, gifter).any? %>
+                          <br> You decided to buy these presents: <br><br>
+                          <% presents_reserved_by_gifter_for_giftee(giftee, gifter).each do |pt| %>
+                            <%= link_to pt.name, present_path(pt), class: "has-text-primary" %><br>
                           <% end %>
                         <% else %>
                           You haven't reserved any presents to buy yet.
