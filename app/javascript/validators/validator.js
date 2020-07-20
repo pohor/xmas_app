@@ -17,7 +17,7 @@ const clearHelpText = (text, field) => {
   field.classList.remove('is-danger');
 };
 
-document.addEventListener('DOMContentLoaded', function (event) {
+document.addEventListener("turbolinks:load", function() {
     if (document.getElementsByClassName('validate_this_field')) {
         const fieldsToValidate = document.getElementsByClassName('validate_this_field')
         Array.from(fieldsToValidate).forEach(field =>
@@ -29,19 +29,22 @@ document.addEventListener('DOMContentLoaded', function (event) {
                 clearHelpText(helpText, field);
                 validateInput(`/${controllerName}/validate` + `?` + `${fieldName}` + `=` + `${fieldValue || ""}` )
                     .then(data => {
-                        if (data.valid) {
-                            field.classList.add('is-success');
-                        } else {
-                            event.preventDefault();
-                            field.classList.add('is-danger');
-                            helpText.style.removeProperty('display');
-                            helpText.classList.add('help');
-                            helpText.classList.add('is-danger');
-                            const text = document.createTextNode(`${data.message[0]}`);
-                            helpText.appendChild(text);
+                            if (data.valid) {
+                                field.classList.add('is-success');
+                            } else {
+                                event.preventDefault();
+                                field.classList.add('is-danger');
+                                helpText.style.removeProperty('display');
+                                helpText.classList.add('help');
+                                helpText.classList.add('is-danger');
+                                const text = document.createTextNode(`${data.message[0]}`);
+                                helpText.appendChild(text);
+                            }
                         }
-                    }
-                )
+                    )
             })
-        )}
-});
+        )};
+})
+
+
+
