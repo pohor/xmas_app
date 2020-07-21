@@ -8,12 +8,12 @@
 
       <div class="field">
         <%= f.label :name, class: "label" %><br />
-        <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+        <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "input is-primary" %>
       </div>
 
       <div class="field">
         <%= f.label :email, class: "label" %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input is-primary" %>
       </div>
 
       <div class="field">
@@ -21,16 +21,16 @@
         <% if @minimum_password_length %>
         <em>(<%= @minimum_password_length %> characters minimum)</em>
         <% end %><br />
-        <%= f.password_field :password, autocomplete: "new-password" %>
+        <%= f.password_field :password, autocomplete: "new-password", class: "input is-primary" %>
       </div>
 
       <div class="field">
         <%= f.label :password_confirmation, class: "label" %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input is-primary" %>
       </div>
 
-      <div class="actions">
-        <%= f.submit "Sign up", class: "button is-primary" %>
+      <div class="actions has-text-centered">
+        <%= f.submit "Sign up", class: "button is-primary is-fullwidth" %>
       </div>
     <% end %>
   </div>
