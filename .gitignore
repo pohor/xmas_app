@@ -34,3 +34,4 @@ yarn-debug.log*
 logfile
 package-lock.json
 yarn.lock
+.env
