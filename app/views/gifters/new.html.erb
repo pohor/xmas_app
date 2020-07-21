@@ -1,9 +1,13 @@
-<%= form_for [@occasion, @gifter] do |f| %>
-  <%= hidden_field_tag :controller_name, "gifters"%>
-  <%= f.label :name, class: "label" %>
-  <%= f.text_field :name, class: "input is-primary validate_this_field" %>
-  <p id="name_help_text" style="display: none"></p>
-  <div class="control">
-    <%= f.submit class: "button is-primary is-outlined" %>
+<div class="level">
+  <div class="level-item">
+    <%= form_for [@occasion, @gifter] do |f| %>
+      <%= hidden_field_tag :controller_name, "gifters"%>
+      <%= f.label :name, class: "label" %>
+      <%= f.text_field :name, class: "input is-primary validate_this_field" %>
+      <p id="name_help_text" style="display: none"></p><br>
+      <div class="control">
+        <br><%= f.submit class: "button is-primary" %>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>

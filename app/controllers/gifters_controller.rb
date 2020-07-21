@@ -13,7 +13,7 @@ class GiftersController < ApplicationController
 
     if @gifter.save
       flash[:notice] = "You have successfuly added yourself as a participant!"
-      redirect_to [@occasion, @gifter]
+      redirect_to @occasion
     else
       flash[:error] = @gifter.errors
       render :new
