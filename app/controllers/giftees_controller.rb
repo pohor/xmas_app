@@ -22,7 +22,7 @@ class GifteesController < ApplicationController
       flash[:notice] = "You have successfuly added a giftee!"
       redirect_to @occasion
     else
-      flash[:error] = @giftee.errors
+      flash[:alert] = @giftee.errors
       render :new
     end
   end

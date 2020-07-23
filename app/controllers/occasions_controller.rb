@@ -20,7 +20,7 @@ class OccasionsController < ApplicationController
       redirect_to @occasion
     else
       @errors = @occasion.errors
-      flash[:error] = @errors
+      flash[:alert] = @errors
       render :new
     end
   end
@@ -36,7 +36,7 @@ class OccasionsController < ApplicationController
       redirect_to @occasion
     else
       @errors = @occasion.errors
-      flash[:error] = @errors
+      flash[:alert] = @errors
       render :edit
     end
   end

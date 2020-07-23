@@ -16,12 +16,6 @@
   </head>
 
   <body>
-    <% if flash[:notice] %>
-      <div class="notification is-success"><button class="delete" id="close-notice-flash"></button><%= notice %></div>
-    <% end %>
-    <% if flash[:alert] %>
-      <div class="notification is-warning"><button class="delete" id="close-alert-flash"></button><%= alert %></div>
-    <% end %>
     <section class="hero is-medium is-primary is-bold">
       <div class="hero-body">
         <div class="container">
@@ -55,6 +49,20 @@
         </div>
       <% end %>
     </div>
+    <% if flash[:notice] %>
+    <div class="notification is-success"><button class="delete" id="close-notice-flash"></button><%= notice %></div>
+  <% end %>
+  <% if flash[:alert] %>
+    <% if flash[:alert].is_a?(ActiveModel::Errors) %>
+      <div class="notification is-warning has-text-centered"><button class="delete" id="close-alert-flash"></button>
+        <% alert.full_messages.each do |msg| %>
+          <%= msg %><br>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="notification is-warning"><button class="delete" id="close-alert-flash"></button><%= alert %></div>
+    <% end %>
+  <% end %>
     <section class="section">
       <div class="container">
         <%= yield %>

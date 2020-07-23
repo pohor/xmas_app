@@ -26,7 +26,7 @@ class PresentsController < ApplicationController
       redirect_to occasion_giftee_path(@present.giftee.occasion, @present.giftee)
     else
       @errors = @present.errors
-      flash[:error] = @errors
+      flash[:alert] = @errors
       render :new
     end
   end
@@ -43,7 +43,7 @@ class PresentsController < ApplicationController
       redirect_to @present
     else
       @errors = @present.errors
-      flash[:error] = @errors
+      flash[:alert] = @errors
       render :edit
     end
   end

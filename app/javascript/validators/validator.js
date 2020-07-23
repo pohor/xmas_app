@@ -17,11 +17,24 @@ const clearHelpText = (text, field) => {
   field.classList.remove('is-danger');
 };
 
+const disableButtons = (buttons) => {
+    buttons.forEach(button =>
+       button.disabled = true
+    )
+};
+
+const enableButtons = (buttons) => {
+    buttons.forEach(button =>
+    button.disabled = false
+    )
+};
+
 document.addEventListener("turbolinks:load", function() {
     if (document.getElementsByClassName('validate_this_field')) {
         const fieldsToValidate = document.getElementsByClassName('validate_this_field')
         Array.from(fieldsToValidate).forEach(field =>
             field.addEventListener('blur', (event) => {
+                const buttons = Array.from(document.getElementsByClassName('button'));
                 const fieldValue = field.value;
                 const fieldName = field.name;
                 const controllerName = document.getElementById('controller_name').value
@@ -31,8 +44,10 @@ document.addEventListener("turbolinks:load", function() {
                     .then(data => {
                             if (data.valid) {
                                 field.classList.add('is-success');
+                                enableButtons(buttons);
                             } else {
                                 event.preventDefault();
+                                disableButtons(buttons);
                                 field.classList.add('is-danger');
                                 helpText.style.removeProperty('display');
                                 helpText.classList.add('help');

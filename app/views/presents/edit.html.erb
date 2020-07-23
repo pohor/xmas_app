@@ -1,2 +1,6 @@
 <%= render "form" %>
-<%= link_to "Back", occasion_giftee_path(@present.giftee.occasion, @present.giftee) %>
+<div class="level">
+  <div class="level-item">
+    <%= link_to "Back", occasion_giftee_path(@present.giftee.occasion, @present.giftee), class: "button is-black" %>
+  </div>
+</div>
