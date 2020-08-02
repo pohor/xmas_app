@@ -1,5 +1,5 @@
 class OccasionMailer < ApplicationMailer
-  default from: 'notifications@presents_app.com'
+  default from: 'ola.pohorecka@gmail.com'
 
   def occasion_created_email(user, occasion)
     @user = user
